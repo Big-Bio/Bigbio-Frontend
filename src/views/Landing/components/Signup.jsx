@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import {useForm} from "../../../services/forms/Hooks";
+import {useForm} from "../../../services/forms/hooks";
 
 import {Subhead, Text, Poplink} from "../../../components/Text/text";
 import FreeInput from "../../../components/Input/FreeInput";
