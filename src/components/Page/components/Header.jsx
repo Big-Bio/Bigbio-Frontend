@@ -1,5 +1,6 @@
 import React from "react";
+import {HeadBar} from "./style";
 
-const Header = props => <h3>{props.children}</h3>;
+const Header = props => <HeadBar>{props.children}</HeadBar>;
 
 export default Header;

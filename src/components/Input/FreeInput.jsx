@@ -1,6 +1,6 @@
 import React from "react";
 import StyledInput from "./style.js";
 
-const FreeInput = () => <StyledInput />;
+const FreeInput = props => <StyledInput {...props} />;
 
 export default FreeInput;

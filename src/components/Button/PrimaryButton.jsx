@@ -1,6 +1,6 @@
 import React from "react";
-import {StyledButton} from "./style.js";
+import {StyledInput} from "./style.js";
 
-const Button = props => <StyledButton>{props.children}</StyledButton>;
+const Button = props => <StyledInput type="submit" value={props.children} />;
 
 export default Button;
