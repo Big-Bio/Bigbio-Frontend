@@ -12,9 +12,7 @@ export const Links = styled.div`
   margin: 10px 50px 40px;
 `;
 
-export const AuthModal = styled(Modal)`
-  display: flex;
-  flex-direction: column;
+export const SignModal = styled(Modal)`
   align-self: center;
   width: 350px;
   height: 400px;

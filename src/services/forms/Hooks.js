@@ -8,7 +8,7 @@ export const useForm = callback => {
     if (event) {
       event.preventDefault();
     }
-    callback();
+    callback(inputs);
   };
   const handleInputChange = event => {
     event.persist();

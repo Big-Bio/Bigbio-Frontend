@@ -2,6 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom";
 import {BrowserRouter, Switch, Route} from "react-router-dom";
 
+import Auth from "./services/auth/auth";
+
 import App from "./app";
 import Landing from "./views/Landing/Landing";
 import Nodes from "./views/Basics/Basics";
@@ -15,9 +17,9 @@ import "./style.css";
 
 // /auth/functions.js
 function requireAuth() {
-  // if (!auth.loggedIn()) defne
-  if (true) return <App />;
-  else return <Dashboard />;
+  Auth.verifyLogin();
+  if (!Auth.loggedIn) return <App />;
+  else return <Dashboard />; // entry point of protected pages
 }
 
 ReactDOM.render(

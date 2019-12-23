@@ -6,19 +6,21 @@ import {useForm} from "../../../services/forms/hooks";
 import {Subhead, Text, Poplink} from "../../../components/Text/text";
 import FreeInput from "../../../components/Input/FreeInput";
 import Button from "../../../components/Button/PrimaryButton";
-import {AuthModal} from "../style";
+import {SignModal} from "../style";
 
 function Signup() {
-  const postEmail = () => {
-    // async callback
+  const submitEmail = () => {
+    // /user/signup
+    // check if email valid
     // redirect
+
     alert(inputs.email);
   };
 
-  const {inputs, handleInputChange, handleSubmit} = useForm(postEmail);
+  const {inputs, handleInputChange, handleSubmit} = useForm(submitEmail);
 
   return (
-    <AuthModal>
+    <SignModal>
       <Subhead>Register Today</Subhead>
       <form onSubmit={handleSubmit}>
         <Text>Email</Text>
@@ -34,7 +36,7 @@ function Signup() {
         <Text>Already have an account?</Text>
         <Poplink to="/login">login here.</Poplink>
       </form>
-    </AuthModal>
+    </SignModal>
   );
 }
 
