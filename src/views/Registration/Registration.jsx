@@ -1,5 +1,5 @@
 import React from "react";
-import {Route} from "react-router-dom";
+import {Route, withRouter} from "react-router-dom";
 
 import Page from "../../components/Page/Page";
 import Register from "./components/Register/Register";
@@ -8,9 +8,10 @@ import UserInfo from "./components/Info/UserInfo";
 
 import {useForm} from "../../services/forms/hooks";
 
-const Registration = ({match}) => {
+const Registration = props => {
   const submitUser = () => {
     console.log(inputs);
+    props.history.push("/dash");
     // callback, make request
   };
 
@@ -19,6 +20,8 @@ const Registration = ({match}) => {
   // handle forms (pass into components)
   // handleinput (called on each input item)
   // handle submit (called on register)
+  const match = props.match;
+
   return (
     <Page heading="Registration">
       <Route
@@ -50,4 +53,4 @@ const Registration = ({match}) => {
   );
 };
 
-export default Registration;
+export default withRouter(Registration);

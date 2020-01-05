@@ -21,7 +21,7 @@ function Credentials(props) {
           type="degree"
           name="degree"
           onChange={handleInputChange}
-          value={inputs.password}
+          value={inputs.degree}
           required
         />
         <Text>Years of Schooling</Text>
@@ -29,7 +29,7 @@ function Credentials(props) {
           type="years"
           name="years"
           onChange={handleInputChange}
-          value={inputs.password}
+          value={inputs.years}
           required
         />
         <Text>Rank of Knowledge</Text>
@@ -38,19 +38,43 @@ function Credentials(props) {
           type="rankbio"
           name="rankbio"
           onChange={handleInputChange}
-          value={inputs.password}
+          value={inputs.rankbio}
           required
         />
         <Text>Stats</Text>
-        <FreeInput />
+        <FreeInput
+          type="rankstats"
+          name="rankstats"
+          onChange={handleInputChange}
+          value={inputs.rankstats}
+          required
+        />
         <Text>Computer Science</Text>
-        <FreeInput />
+        <FreeInput
+          type="rankcs"
+          name="rankcs"
+          onChange={handleInputChange}
+          value={inputs.rankcs}
+          required
+        />
         <Text>Occupation</Text>
-        <FreeInput />
+        <FreeInput
+          type="occupation"
+          name="occupation"
+          onChange={handleInputChange}
+          value={inputs.occupation}
+          required
+        />
         <Text>Employer</Text>
-        <FreeInput />
+        <FreeInput
+          type="employer"
+          name="employer"
+          onChange={handleInputChange}
+          value={inputs.employer}
+          required
+        />
         <br />
-        <Button onSubmit>REGISTER</Button>
+        <Button>REGISTER</Button>
       </form>
     </Modal>
   );
