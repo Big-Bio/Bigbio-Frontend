@@ -10,15 +10,15 @@ import Nodes from "./views/Basics/Basics";
 import Resources from "./views/Resources/Resources";
 import Instructions from "./views/Instructions/Instructions";
 import Dashboard from "./views/Dashboard/Dashboard";
-
+import Registration from "./views/Registration/Registration";
 import Login from "./views/Login/Login";
+
 import * as serviceWorker from "./serviceWorker";
 import "./style.css";
 
 // /auth/functions.js
 function requireAuth() {
-  Auth.verifyLogin();
-  if (!Auth.loggedIn) return <App />;
+  if (!Auth.verifyLogin()) return <App />;
   else return <Dashboard />; // entry point of protected pages
 }
 
@@ -31,10 +31,11 @@ ReactDOM.render(
       <Route path="/resources" component={Resources} />
       <Route path="/module-instructions" component={Instructions} />
       <Route path="/login" component={Login} />
+      <Route exact path="/dash" component={Dashboard} />
+      <Route path="/registration/:id" component={Registration} />
 
       {/* testing routes */}
       <Route exact path="/home" component={Landing} />
-      <Route exact path="/dash" component={Dashboard} />
     </Switch>
   </BrowserRouter>,
   document.getElementById("root")

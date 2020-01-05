@@ -10,10 +10,12 @@ export const useForm = callback => {
     }
     callback(inputs);
   };
+
   const handleInputChange = event => {
     event.persist();
     setInputs(inputs => ({...inputs, [event.target.name]: event.target.value}));
   };
+
   return {
     handleSubmit,
     handleInputChange,

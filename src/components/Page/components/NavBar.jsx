@@ -12,7 +12,7 @@ const Nav = styled.div`
 function NavBar() {
   return (
     <Topbar>
-      <Link>Big Bio</Link>
+      <Link to="/">Big Bio</Link>
       <Nav>
         <Navlink to="/basics-of-genomics">Basics of Genomics</Navlink>
         <Navlink to="/resources">Resources</Navlink>

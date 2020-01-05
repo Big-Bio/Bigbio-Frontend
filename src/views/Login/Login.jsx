@@ -22,8 +22,8 @@ const Login = props => {
     // submit request, promise
     // Auth.login({username, password});
     // redirect
-    // history.push('/dash');
-    history.push("/");
+    // history.push('/');
+    history.push("/dash");
   };
 
   const {inputs, handleInputChange, handleSubmit} = useForm(submitLogin);
