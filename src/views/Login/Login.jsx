@@ -9,6 +9,8 @@ import {Subhead, Text, Poplink} from "../../components/Text/text";
 import FreeInput from "../../components/Input/FreeInput";
 import Button from "../../components/Button/PrimaryButton";
 
+import axios from "axios";
+
 import {LoginModal} from "./style";
 
 const Login = props => {
@@ -19,6 +21,20 @@ const Login = props => {
     var username = inputs.username;
     var password = inputs.password;
     console.log(username, password);
+
+    axios
+      .post("http://localhost:2000/user/login", {
+        username: inputs.username,
+        password: inputs.password,
+      })
+      .then(res => {
+        console.log(res);
+        // props.history.push('/dash');
+      })
+      .catch(error => {
+        //
+      });
+
     // submit request, promise
     // Auth.login({username, password});
     // redirect

@@ -16,8 +16,9 @@ function Signup(props) {
     // check if email valid
     // redirect
     axios
-      .post("https://localhost", {email: inputs.email})
+      .post("http://localhost:2000/user/signup", {email: inputs.email})
       .then(res => {
+        console.log(res);
         // props.history.push('/dash');
       })
       .catch(error => {
