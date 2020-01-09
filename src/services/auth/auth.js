@@ -1,4 +1,5 @@
 //https://blog.logrocket.com/how-to-make-http-requests-like-a-pro-with-axios/
+// TODO: be more secure
 import User from "./user";
 import axios from "axios";
 
@@ -7,14 +8,10 @@ var Auth = (function() {
   var loggedIn = false;
 
   // must be async
-  var userLogin = function({username, password}) {
-    // user/login
-    // store token
-    console.log(username, password);
-    // catch: error logging in, invalid credentials etc
-
+  var userLogin = function(token) {
+    localStorage.setItem("TOKEN", token);
     // login worked
-    return true;
+    return (loggedIn = true);
   };
 
   var userLogout = function() {
@@ -25,6 +22,7 @@ var Auth = (function() {
     return true;
   };
 
+  // make async
   var verifyLogin = function() {
     // check if JWT exists
     const TOKEN = localStorage.getItem("TOKEN");
@@ -50,7 +48,7 @@ var Auth = (function() {
           console.log("oops");
         });
     } else return (loggedIn = false);
-    return loggedIn;
+    return (loggedIn = true);
   };
 
   // check before each admin action

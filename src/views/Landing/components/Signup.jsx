@@ -1,9 +1,12 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import styled from "styled-components";
 import {withRouter} from "react-router-dom";
 import axios from "axios";
 
-import {useForm} from "../../../services/forms/hooks";
+import {useForm} from "../../../services/forms/Hooks";
+
+import Popup from "../../../components/Popup/Popup";
+import Success from "./Success";
 
 import {Subhead, Text, Poplink} from "../../../components/Text/text";
 import FreeInput from "../../../components/Input/FreeInput";
@@ -11,6 +14,8 @@ import Button from "../../../components/Button/PrimaryButton";
 import {SignModal} from "../style";
 
 function Signup(props) {
+  const [popup, togglePopup] = useState(false);
+
   const submitEmail = () => {
     // /user/signup
     // check if email valid
@@ -19,17 +24,29 @@ function Signup(props) {
       .post("http://localhost:2000/user/signup", {email: inputs.email})
       .then(res => {
         console.log(res);
-        // props.history.push('/dash');
+        if (res.data.msg) {
+          // display message
+          setErrorMessage(res.data.msg);
+        } else {
+          // render component
+          togglePopup(true);
+        }
       })
       .catch(error => {
-        //
+        setErrorMessage("Error signing up. Please try again later.");
       });
   };
 
   const {inputs, handleInputChange, handleSubmit} = useForm(submitEmail);
+  const [errorMessage, setErrorMessage] = useState("");
+
+  useEffect(() => {
+    console.log(popup);
+  });
 
   return (
     <SignModal>
+      {popup && <Success togglePopup={togglePopup} email={inputs.email} />}
       <Subhead>Sign Up Today</Subhead>
       <form onSubmit={handleSubmit}>
         <Text>Email</Text>

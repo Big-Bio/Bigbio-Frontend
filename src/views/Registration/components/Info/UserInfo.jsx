@@ -5,7 +5,7 @@ import FreeInput from "../../../../components/Input/FreeInput";
 import {Continue} from "../../../../components/Button/PrimaryButton";
 
 import Modal from "./style";
-import {useForm} from "../../../../services/forms/hooks";
+import {useForm} from "../../../../services/forms/Hooks";
 
 function UserInfo(props) {
   const handleInputChange = props.handleInputChange;
