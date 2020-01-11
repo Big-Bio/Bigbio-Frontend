@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import {Route, withRouter} from "react-router-dom";
 
 import Page from "../../components/Page/Page";
@@ -34,7 +34,7 @@ const Registration = props => {
       });
     // callback, make request
   };
-  console.log(props.match.params);
+
   const {inputs, handleInputChange, handleSubmit} = useForm(submitUser);
   const [errorMessage, setErrorMessage] = useState("");
   // match subroutes
@@ -42,6 +42,26 @@ const Registration = props => {
   // handleinput (called on each input item)
   // handle submit (called on register)
   const match = props.match;
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:2000/user/key", {
+        params: {
+          vkey: match.params.key,
+        },
+      })
+      .then(res => {
+        if (res.data.msg) {
+          console.log(res.data.msg);
+          props.history.push("/");
+        } else {
+          console.log("passed!");
+        }
+      })
+      .catch(res => {
+        //error handling
+      });
+  });
 
   return (
     <Page heading="Registration">

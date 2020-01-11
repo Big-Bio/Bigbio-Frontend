@@ -4,8 +4,8 @@ import {Link} from "react-router-dom";
 
 export const Heading = styled.h1`
   color: #08447b;
-  margin: 5px 0px 10px 0px;
-  font-size: 52px;
+  margin: 15px 0px 10px 0px;
+  font-size: 48px;
   font-weight: 400;
 `;
 
@@ -29,6 +29,12 @@ export const Poptext = styled.h4`
   font-size: 16px;
   color: #e527a1;
   margin: 0;
+`;
+
+export const Errortext = styled.li`
+  color: #e527a1;
+  visibility: ${props => (props.visible ? "visible" : "hidden")};
+  font-size: 14px;
 `;
 
 export const Poplink = styled(Link)`

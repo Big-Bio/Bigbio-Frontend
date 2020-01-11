@@ -48,7 +48,7 @@ var Auth = (function() {
           console.log("oops");
         });
     } else return (loggedIn = false);
-    return (loggedIn = true);
+    // return (loggedIn = true);
   };
 
   // check before each admin action
@@ -59,6 +59,7 @@ var Auth = (function() {
 
   return {
     login: userLogin,
+    logout: userLogout,
     verifyLogin: verifyLogin,
     verifyAdmin: verifyAdmin,
   };
