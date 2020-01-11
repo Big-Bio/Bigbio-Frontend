@@ -14,10 +14,12 @@ export const Edit = styled.p`
   grid-column-start: 3;
   grid-column-end: 4;
 `;
+
 export const Submit = styled.p`
   grid-column-start: 4;
   grid-column-end: 5;
 `;
+
 export const Remove = styled.p`
   grid-column-start: 5;
   grid-column-end: 6;
