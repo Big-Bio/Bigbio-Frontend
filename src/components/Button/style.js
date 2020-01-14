@@ -23,6 +23,7 @@ export const StyledLink = styled(Link)`
 `;
 
 export const StyledButtonTwo = styled.button`
+  align-self: flex-start;
   background: #ffffff;
   border: 1px solid #0047ff;
   border-radius: 24px;

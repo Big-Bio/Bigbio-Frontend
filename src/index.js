@@ -12,6 +12,7 @@ import Instructions from "./views/Instructions/Instructions";
 import Dashboard from "./views/Dashboard/Dashboard";
 import Registration from "./views/Registration/Registration";
 import Login from "./views/Login/Login";
+import Module from "./views/Module/Module";
 
 import * as serviceWorker from "./serviceWorker";
 import "./style.css";
@@ -33,7 +34,7 @@ ReactDOM.render(
       <Route path="/login" component={Login} />
       <Route exact path="/dash" component={Dashboard} />
       <Route path="/registration/:key" component={Registration} />
-
+      <Route path="/module/:id" component={Module} />
       {/* testing routes */}
       <Route exact path="/home" component={Landing} />
     </Switch>

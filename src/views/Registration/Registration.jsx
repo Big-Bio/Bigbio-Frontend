@@ -60,7 +60,7 @@ const Registration = props => {
         )}
       />
       <Route
-        path={`${match.path}/info/cred`}
+        path={`${match.path}/cred`}
         render={props => (
           <Credentials
             handleInputChange={handleInputChange}

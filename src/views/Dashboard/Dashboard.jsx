@@ -2,14 +2,17 @@ import React from "react";
 import Page from "../../components/Page/Page";
 import {Heading} from "../../components/Text/text";
 import Auth from "../../services/auth/auth";
-import ModuleDir from "./components/Contributor/ModuleDir/ModuleDir";
+import ModuleDir from "./components/ModuleDir/ModuleDir";
+import FavoriteDir from "./components/FavoriteDir/FavoriteDir";
+import MiniModuleDir from "./components/AdminDir/ModuleDir";
+import PendingDir from "./components/AdminDir/PendingDir";
 
 // https://css-tricks.com/fetching-data-in-react-using-react-async/
 // render dashboard asynchronously
 
 // check if user is an admin
 function getRole() {
-  return "contributor";
+  return "admin";
 }
 
 const Dashboard = () => {
@@ -21,9 +24,11 @@ const Dashboard = () => {
       <Page heading="Admin Dashboard">
         <div>
           <Heading>Your Modules</Heading>
+          <MiniModuleDir />
         </div>
         <div>
           <Heading>Pending Modules</Heading>
+          <PendingDir />
         </div>
       </Page>
     );
@@ -41,7 +46,7 @@ const Dashboard = () => {
       <Page heading="Dashboard">
         <div>
           <Heading>Your Favorites</Heading>
-          <ModuleDir />
+          <FavoriteDir />
         </div>
       </Page>
     );

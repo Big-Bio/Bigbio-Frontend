@@ -1,8 +1,8 @@
 import React from "react";
-import {StyledItem, Name, Date, Edit, Submit, Remove} from "./style";
-import Button from "../../../../../components/Button/SecondaryButton";
+import {StyledItem, Name, Date, Edit, Submit, Remove} from "../DirItem/style";
+import Button from "../../../../components/Button/SecondaryButton";
 
-import ModuleItem from "./ModuleItem/ModuleItem";
+import ModuleItem from "../DirItem/ModuleItem";
 
 const ModuleDir = () => {
   return (

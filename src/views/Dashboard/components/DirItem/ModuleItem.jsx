@@ -7,8 +7,8 @@
  * **/
 import React from "react";
 
-import {StyledItem, Name, Date, Edit, Remove, Submit} from "../style";
-import Button from "../../../../../../components/Button/TextButton";
+import {StyledItem, Name, Date, Edit, Remove, Submit} from "./style";
+import Button from "../../../../components/Button/TextButton";
 import {Link} from "react-router-dom";
 
 const ModuleItem = props => {
