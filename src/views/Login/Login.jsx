@@ -1,11 +1,11 @@
-import React from "react";
+import React, {useState} from "react";
 import {withRouter} from "react-router-dom";
 
-import {useForm} from "../../services/forms/hooks";
+import {useForm} from "../../services/forms/Hooks";
 import Auth from "../../services/auth/auth";
 
 import Page from "../../components/Page/Page";
-import {Subhead, Text, Poplink} from "../../components/Text/text";
+import {Subhead, Text, Poplink, Errortext} from "../../components/Text/text";
 import FreeInput from "../../components/Input/FreeInput";
 import Button from "../../components/Button/PrimaryButton";
 
@@ -20,8 +20,8 @@ const Login = props => {
     // check correct fields
     var username = inputs.username;
     var password = inputs.password;
-    console.log(username, password);
 
+    // TODO: move requests to auth
     axios
       .post("http://localhost:2000/user/login", {
         username: inputs.username,
@@ -29,25 +29,29 @@ const Login = props => {
       })
       .then(res => {
         console.log(res);
-        // props.history.push('/dash');
+        if (res.data.token) {
+          setErrorMessage(null);
+          Auth.login(res.data.token);
+          history.replace("/");
+        } else {
+          // print error on screen
+          setErrorMessage("Email/Password incorrect");
+        }
       })
       .catch(error => {
-        //
+        setErrorMessage("Error logging in, please try again later");
+        console.log(error);
       });
-
-    // submit request, promise
-    // Auth.login({username, password});
-    // redirect
-    // history.push('/');
-    history.push("/dash");
   };
 
   const {inputs, handleInputChange, handleSubmit} = useForm(submitLogin);
+  const [errorMessage, setErrorMessage] = useState("");
 
   return (
     <Page heading="Login">
       <LoginModal>
         <Subhead>Login Here</Subhead>
+        <Errortext visible={errorMessage}>{errorMessage}</Errortext>
         <form onSubmit={handleSubmit}>
           <Text>Username</Text>
           <FreeInput

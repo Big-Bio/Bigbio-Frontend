@@ -4,7 +4,7 @@ import Modal from "./style";
 import {Subhead, Text} from "../../../../components/Text/text";
 import FreeInput from "../../../../components/Input/FreeInput";
 
-import {useForm} from "../../../../services/forms/hooks";
+import {useForm} from "../../../../services/forms/Hooks";
 
 import Button from "../../../../components/Button/PrimaryButton";
 

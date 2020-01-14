@@ -32,7 +32,7 @@ ReactDOM.render(
       <Route path="/module-instructions" component={Instructions} />
       <Route path="/login" component={Login} />
       <Route exact path="/dash" component={Dashboard} />
-      <Route path="/registration/:id" component={Registration} />
+      <Route path="/registration/:key" component={Registration} />
 
       {/* testing routes */}
       <Route exact path="/home" component={Landing} />
