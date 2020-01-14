@@ -11,6 +11,7 @@ export const StyledInput = styled.input.attrs({type: "submit"})`
 `;
 
 export const StyledLink = styled(Link)`
+  cursor: pointer;
   position: relative;
   top: 30px;
   left: 25%;
@@ -24,6 +25,7 @@ export const StyledLink = styled(Link)`
 
 export const StyledButtonTwo = styled.button`
   align-self: flex-start;
+  cursor: pointer;
   background: #ffffff;
   border: 1px solid #0047ff;
   border-radius: 24px;
@@ -32,6 +34,7 @@ export const StyledButtonTwo = styled.button`
 `;
 
 export const StyledBack = styled.button`
+  cursor: pointer;
   position: relative;
   top: 160px;
   left: 40px;
@@ -56,4 +59,10 @@ export const Chevron = styled.span`
     left: 0.25em;
     transform: rotate(-135deg);
   }
+`;
+
+export const StyledTextButton = styled(Link)`
+  font-size: 18px;
+  padding: 5px;
+  color: #8f8f8f;
 `;

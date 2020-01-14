@@ -8,7 +8,7 @@ import {useForm} from "../../../services/forms/Hooks";
 import Popup from "../../../components/Popup/Popup";
 import Success from "./Success";
 
-import {Subhead, Text, Poplink} from "../../../components/Text/text";
+import {Subhead, Text, Poplink, Errortext} from "../../../components/Text/text";
 import FreeInput from "../../../components/Input/FreeInput";
 import Button from "../../../components/Button/PrimaryButton";
 import {SignModal} from "../style";
@@ -28,6 +28,7 @@ function Signup(props) {
           // display message
           setErrorMessage(res.data.msg);
         } else {
+          setErrorMessage(null);
           // render component
           togglePopup(true);
         }
@@ -48,6 +49,7 @@ function Signup(props) {
     <SignModal>
       {popup && <Success togglePopup={togglePopup} email={inputs.email} />}
       <Subhead>Sign Up Today</Subhead>
+      <Errortext visible={errorMessage}>{errorMessage}</Errortext>
       <form onSubmit={handleSubmit}>
         <Text>Email</Text>
         <FreeInput

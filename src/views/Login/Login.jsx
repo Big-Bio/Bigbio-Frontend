@@ -5,7 +5,7 @@ import {useForm} from "../../services/forms/Hooks";
 import Auth from "../../services/auth/auth";
 
 import Page from "../../components/Page/Page";
-import {Subhead, Text, Poplink} from "../../components/Text/text";
+import {Subhead, Text, Poplink, Errortext} from "../../components/Text/text";
 import FreeInput from "../../components/Input/FreeInput";
 import Button from "../../components/Button/PrimaryButton";
 
@@ -30,6 +30,7 @@ const Login = props => {
       .then(res => {
         console.log(res);
         if (res.data.token) {
+          setErrorMessage(null);
           Auth.login(res.data.token);
           history.replace("/");
         } else {
@@ -50,6 +51,7 @@ const Login = props => {
     <Page heading="Login">
       <LoginModal>
         <Subhead>Login Here</Subhead>
+        <Errortext visible={errorMessage}>{errorMessage}</Errortext>
         <form onSubmit={handleSubmit}>
           <Text>Username</Text>
           <FreeInput
