@@ -31,7 +31,7 @@ const Login = props => {
         console.log(res);
         if (res.data.token) {
           setErrorMessage(null);
-          Auth.login(res.data.token);
+          Auth.login(res.data.token, username);
           history.replace("/");
         } else {
           // print error on screen

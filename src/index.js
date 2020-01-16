@@ -4,7 +4,6 @@ import {BrowserRouter, Switch, Route} from "react-router-dom";
 
 import Auth from "./services/auth/auth";
 
-import App from "./app";
 import Landing from "./views/Landing/Landing";
 import Nodes from "./views/Basics/Basics";
 import Resources from "./views/Resources/Resources";
@@ -13,21 +12,16 @@ import Dashboard from "./views/Dashboard/Dashboard";
 import Registration from "./views/Registration/Registration";
 import Login from "./views/Login/Login";
 import Module from "./views/Module/Module";
+import Wrapper from "./views/Wrapper";
 
 import * as serviceWorker from "./serviceWorker";
 import "./style.css";
-
-// /auth/functions.js
-function requireAuth() {
-  if (!Auth.verifyLogin()) return <App />;
-  else return <Dashboard />; // entry point of protected pages
-}
 
 ReactDOM.render(
   <BrowserRouter>
     <Switch>
       {/* render dashboard if logged in */}
-      <Route exact path="/" render={requireAuth} />
+      <Route exact path="/" component={Wrapper} />
       <Route path="/basics-of-genomics" component={Nodes} />
       <Route path="/resources" component={Resources} />
       <Route path="/module-instructions" component={Instructions} />

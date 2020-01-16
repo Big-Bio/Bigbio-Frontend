@@ -11,6 +11,8 @@ import {useForm} from "../../services/forms/Hooks";
 import axios from "axios";
 
 const Registration = props => {
+  // verify vkey
+
   const submitUser = () => {
     axios
       .post("http://localhost:2000/user/register", {
@@ -24,8 +26,8 @@ const Registration = props => {
           setErrorMessage(res.data.msg);
           console.log(res.data.msg);
         } else {
-          Auth.login(res.data.token);
-          props.history.push("/");
+          // TODO: take them to welcome page with login link
+          props.history.push("/login");
         }
       })
       .catch(error => {
@@ -59,6 +61,7 @@ const Registration = props => {
         }
       })
       .catch(res => {
+        console.log(res);
         //error handling
       });
   });
@@ -80,9 +83,10 @@ const Registration = props => {
         )}
       />
       <Route
-        path={`${match.path}/cred`}
+        path={`${match.path}/info/cred`}
         render={props => (
           <Credentials
+            error={errorMessage}
             handleInputChange={handleInputChange}
             inputs={inputs}
             handleSubmit={handleSubmit}

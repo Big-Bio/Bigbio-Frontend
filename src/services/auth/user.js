@@ -5,15 +5,15 @@ var UserProfile = (function() {
   // private variables
   var name = "not valid";
   var email = "not provided";
-  var role = "user";
+  var role = 1; // defaults to user
   var ID = null;
 
   var getName = function() {
     return name;
   };
 
-  var setName = function(name) {
-    name = name;
+  var setName = function(nname) {
+    name = nname;
     // Also set this in cookie/localStorage
   };
 
@@ -32,6 +32,7 @@ var UserProfile = (function() {
   };
 
   var getRole = function() {
+    console.log(role);
     return role;
   };
 

@@ -64,7 +64,7 @@ function UserInfo(props) {
         />
         <br />
         {/* only match to registration/:key url */}
-        <Continue to={`${props.match.url}/info/red`} />
+        <Continue to={`${props.match.url}/cred`} />
       </form>
     </Modal>
   );

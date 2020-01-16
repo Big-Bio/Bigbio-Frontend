@@ -1,5 +1,5 @@
 import React from "react";
-import {Link} from "react-router-dom";
+import {Link, withRouter} from "react-router-dom";
 import {Topbar} from "./style.js";
 import {Navlink} from "./style.js";
 import styled from "styled-components";
@@ -9,7 +9,7 @@ const Nav = styled.div`
   flex-direction: row;
 `;
 
-function NavBar() {
+function NavBar(props) {
   return (
     <Topbar>
       <Link to="/">Big Bio</Link>
@@ -22,4 +22,4 @@ function NavBar() {
   );
 }
 
-export default NavBar;
+export default withRouter(NavBar);

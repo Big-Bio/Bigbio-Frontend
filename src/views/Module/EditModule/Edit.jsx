@@ -6,7 +6,7 @@
 **/
 
 import React, {useState} from "react";
-import {Subhead, Text} from "../../../components/Text/text";
+import {Subhead, Text, Errortext} from "../../../components/Text/text";
 import FreeInput from "../../../components/Input/FreeInput";
 import {useForm} from "../../../services/forms/Hooks";
 import Button from "../../../components/Button/PrimaryButton";
@@ -26,6 +26,7 @@ function ModuleForm(props) {
   return (
     <form>
       <Subhead>{props.type} a Module</Subhead>
+      <Errortext visible={errorMessage}>{errorMessage}</Errortext>
       <Text>Title</Text>
       <FreeInput
         name="title"

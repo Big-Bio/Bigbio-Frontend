@@ -4,51 +4,53 @@ import User from "./user";
 import axios from "axios";
 
 var Auth = (function() {
-  // check before each page
   var loggedIn = false;
 
   // must be async
-  var userLogin = function(token) {
+  var userLogin = function(token, username) {
+    User.setName(username);
     localStorage.setItem("TOKEN", token);
     // login worked
     return (loggedIn = true);
   };
 
-  var userLogout = function() {
+  var userLogout = function(history) {
     localStorage.removeItem("TOKEN");
     loggedIn = false;
-
-    // logout worked
-    return true;
+    history.push("/home");
+    return (loggedIn = false);
   };
 
   // make async
-  var verifyLogin = function() {
+  var verifyLogin = async function() {
     // check if JWT exists
     const TOKEN = localStorage.getItem("TOKEN");
     if (TOKEN) {
+      let status = false;
       // TODO: store JWT in cookie instead of local storage
-      axios
-        .post("/user/verify", {token: TOKEN})
+      await axios
+        .post("/user/verify", null, {
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+            Authorization: "Bearer " + TOKEN,
+          },
+        })
         .then(res => {
           let username = res.data.username;
           let user_id = res.data.user_id;
-          let user_role = res.data.user_role;
+          let user_role = res.data.role_id;
           let email = res.data.email;
-
+          console.log(res.data);
           // user variables
           User.setName(username);
           User.setEmail(email);
           User.setRole(user_role);
           User.setID(user_id);
-
-          loggedIn = true;
+          status = true;
         })
-        .catch(error => {
-          console.log("oops");
-        });
+        .catch(error => {});
+      return status;
     } else return (loggedIn = false);
-    // return (loggedIn = true);
   };
 
   // check before each admin action

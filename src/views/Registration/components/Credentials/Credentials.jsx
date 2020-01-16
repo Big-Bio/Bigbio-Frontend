@@ -1,7 +1,7 @@
 import React from "react";
 
 import Modal from "./style";
-import {Subhead, Text} from "../../../../components/Text/text";
+import {Subhead, Text, Errortext} from "../../../../components/Text/text";
 import FreeInput from "../../../../components/Input/FreeInput";
 
 import {useForm} from "../../../../services/forms/Hooks";
@@ -16,6 +16,7 @@ function Credentials(props) {
     <Modal>
       <Subhead>What are your credentials?</Subhead>
       <form onSubmit={props.handleSubmit}>
+        <Errortext visible={props.errorMessage}>{props.errorMessage}</Errortext>
         <Text>Highest Degree Earned</Text>
         <FreeInput
           type="degree"
