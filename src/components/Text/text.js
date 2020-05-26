@@ -13,6 +13,10 @@ export const Subhead = styled.h2`
   color: #08447b;
 `;
 
+export const Title = styled(Heading)`
+  font-size: 24px;
+`;
+
 export const Styledlink = styled(Link)`
   line-height: 50px;
   color: #aaaaaa;
@@ -43,8 +47,17 @@ export const Poplink = styled(Link)`
 `;
 
 export const Text = styled.p`
-  margin: 10px 0px;
   color: #aaa;
   font-size: 16px;
   width: ${props => (props.width ? props.width : "auto")};
+`;
+
+export const StyledTagText = styled(Text)`
+  margin: 0;
+  padding: 4px 8px;
+  border: ${props => props.border ? "0.5px solid #A3A3A3" : null};
+  background-color: ${props => props.color ? props.color  === "blue" ? "#DEE7FF" : "#FFE3F5" : null}
+  border-radius: 5px;
+  width: 59px;
+  text-align: center;
 `;

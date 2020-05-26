@@ -1,3 +1,5 @@
+// preview drafts
+
 import React, {useState, useEffect} from "react";
 import Axios from "axios";
 import Page from "../../../components/Page/Page";
@@ -5,30 +7,19 @@ import {Heading, Subhead, Text} from "../../../components/Text/text"
 import {withRouter} from "react-router-dom";
 import Auth from "../../../services/auth/auth";
 import {Container, Divider} from "./style.js";
-import {useQuery} from "../../../services/forms/Hooks";
-// todo: make view and load routes one route
-const ViewModule = (props) => {     
-    const query = useQuery();
-    const status = query.get('status');
 
+// todo: make view and load routes one route
+const Preview = (props) => { 
     const id = props.match.params.id;
     const [moduleData, setModuleData] = useState(null); 
     // get module data
     useEffect(() => { 
-        if(status == "publish") { 
-            Axios.get("http://localhost:2000/module?id=" + id, Auth.requestConfig())
-            .then(res => { 
-                if( !res.data.msg )
-                    setModuleData( res.data )
-            })    
-        }
-        else {
-            Axios.get("http://localhost:2000/module/load?id=" + id, Auth.requestConfig())
-                .then(res => { 
-                    if( !res.data.msg )
-                        setModuleData( res.data )
-                })
-        }
+        // TODO: add different link for 
+        Axios.get("http://localhost:2000/module/load?id=" + id, Auth.requestConfig())
+        .then(res => { 
+            if( !res.data.msg )
+                setModuleData( res.data )
+        })    
     }, [])
 
     if( moduleData ) { 
@@ -53,4 +44,4 @@ const ViewModule = (props) => {
 }
 
 
-export default withRouter(ViewModule);
+export default withRouter(Preview);

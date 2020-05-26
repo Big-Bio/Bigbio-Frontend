@@ -5,26 +5,78 @@
     @module: object with preexisting module data
 **/
 
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
+import {withRouter} from 'react-router-dom';
 import {Subhead, Text, Errortext} from "../../../components/Text/text";
 import FreeInput from "../../../components/Input/FreeInput";
-import {useForm} from "../../../services/forms/Hooks";
+import FreeTextArea from "../../../components/Input/FreeTextArea";
+import {useForm, initModule} from "../../../services/forms/Hooks";
 import Button from "../../../components/Button/PrimaryButton";
+import Chip from "../../../components/Input/Chip";
+import Axios from "axios";
+
+import Auth from "../../../services/auth/auth";
 
 function ModuleForm(props) {
   // TODO: load module draft data and supply as input
   // INPUTS should be initialized with preexisting module data
+  const id = props.match.params.id;
+  const [errorMessage, setErrorMessage] = useState(null);
 
-  const SubmitModule = function() {
+  const SaveModule = function(e) {
+    Axios.post("http://localhost:2000/module/save", {module_id: props.match.params.id, ...inputs}, Auth.requestConfig())
+    .then( res => { 
+      if( res.data.msg ) {
+        setErrorMessage(res.data.msg)
+      }
+      else {
+        props.history.push("/");
+      }
+    })
+    .catch( err => { 
+      setErrorMessage(err);
+    })
     // push to dashboard or set error
-    props.history.push("/");
   };
 
-  const {inputs, handleInputChange, handleSubmit} = useForm(SubmitModule, props.module);
-  const [errorMessage, setErrorMessage] = useState("");
+  const SubmitModule = function(e) { 
+    e.preventDefault();
+    Axios.post("http://localhost:2000/module/submit", 
+    { module_id: props.match.params.id, 
+      title: inputs.title, 
+      collab: inputs.collab, 
+      content: inputs.content, 
+      sup_notes: inputs.sup_notes,
+      ack: inputs.ack,
+      keyterms: inputs.keyterms,
+      doi: inputs.doi
+    }, Auth.requestConfig())
+    .then((res) => { 
+      if(res.data.msg) { 
+        setErrorMessage(res.data.msg)
+      }
+      else { 
+        props.history.push('/')
+      }
+    })
+  }
+
+  const {inputs, handleInputChange, handleKeyDown, handleSubmit, initializeInputs} = useForm(SaveModule, initModule);
+
+  useEffect(() => {
+    if(id) { 
+      Axios.get("http://localhost:2000/module/load?id="+id, Auth.requestConfig())
+      .then((res) => {  
+        if(res.data.msg){ 
+          setErrorMessage(res.data.msg)
+        }
+        initializeInputs(res.data)
+      })
+    }
+  }, [])
 
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <Subhead>{props.type} a Module</Subhead>
       <Errortext visible={errorMessage}>{errorMessage}</Errortext>
       <Text>Title</Text>
@@ -32,39 +84,47 @@ function ModuleForm(props) {
         name="title"
         onChange={handleInputChange}
         value={inputs.title}
-        required
       />
       <Text>Collaborators</Text>
       <FreeInput
-        name="collaborators"
-        onChange={handleInputChange}
-        value={inputs.collaborators}
-        required
+        name="collab"
+        // onChange={handleInputChange}
+        onKeyDown={handleKeyDown.bind(this)}
       />
       <Text>Module Summary</Text>
-      <FreeInput
-        name="summary"
+      <FreeTextArea
+        name="content"
+        width="550px"
+        height="200px"
         onChange={handleInputChange}
-        value={inputs.summary}
-        required
+        value={inputs.content}
       />
       <Text>Supplemental Notes and Resources</Text>
-      <FreeInput
-        name="notes"
+      <FreeTextArea
+        name="sup_notes"
         onChange={handleInputChange}
-        value={inputs.notes}
-        required
+        value={inputs.sup_notes}
       />
       <Text>Acknowledgements</Text>
-      <FreeInput name="ack" onChange={handleInputChange} value={inputs.ack} required />
+      <FreeInput name="ack" onChange={handleInputChange} value={inputs.ack} />
       <Text>Key Terms</Text>
-      <FreeInput name="tags" onChange={handleInputChange} value={inputs.terms} required />
+      <FreeInput 
+        name="keyterms"  
+        onKeyDown={handleKeyDown.bind(this)}
+      />
+      {console.log(inputs.keyterms)}    
       <Text>DOIs</Text>
-      <FreeInput name="dois" onChange={handleInputChange} value={inputs.doi} required />
+      <FreeInput 
+        name="doi" 
+        // onChange={handleInputChange} 
+        onKeyDown={handleKeyDown.bind(this)}
+      />
       <br />
-      <Button>SUBMIT</Button>
+      <Button type="button" onClick={SaveModule}>SAVE</Button><span></span>
+      <Button type="button" onClick={SubmitModule}>SUBMIT</Button>
     </form>
+
   );
 }
 
-export default ModuleForm;
+export default withRouter(ModuleForm);

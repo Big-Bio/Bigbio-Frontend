@@ -15,7 +15,7 @@ const ModuleDir = () => {
       {/* map styled items here */}
       <FavoriteItem id={124432} name="Module Uno" date="Dec 21st, 2019"></FavoriteItem>
       <br />
-      <Button>LOAD MORE</Button>
+      <Button >LOAD MORE</Button>
     </>
   );
 };

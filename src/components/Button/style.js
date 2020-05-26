@@ -1,13 +1,13 @@
 import styled from "styled-components";
 import {Link} from "react-router-dom";
 
-export const StyledInput = styled.input.attrs({type: "submit"})`
+export const StyledInput = styled.input`
   background: #ebebeb;
   border-radius: 20px;
   border: none;
   font-size: 16px;
   padding: 11px 25px;
-  margin: 15px 0px;
+  margin: 15px 20px 0px 0px;
 `;
 
 export const StyledLink = styled(Link)`
@@ -24,7 +24,6 @@ export const StyledLink = styled(Link)`
 `;
 
 export const StyledButtonTwo = styled.button`
-  align-self: flex-start;
   cursor: pointer;
   background: #ffffff;
   border: 1px solid #0047ff;
@@ -61,8 +60,9 @@ export const Chevron = styled.span`
   }
 `;
 
-export const StyledTextButton = styled(Link)`
+export const StyledButtonText = styled.p`
+  margin: 0;
   font-size: 18px;
-  padding: 5px;
   color: #8f8f8f;
 `;
+

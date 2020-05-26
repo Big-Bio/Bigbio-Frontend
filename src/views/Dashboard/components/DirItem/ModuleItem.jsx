@@ -7,26 +7,26 @@
  * **/
 import React from "react";
 
-import {StyledItem, Name, Date, Edit, Remove, Submit} from "./style";
-import Button from "../../../../components/Button/TextButton";
-import {Link} from "react-router-dom";
+import {StyledItem, Name, Date, Edit, Remove, Status} from "./style";
+import TextLink, {Button} from "../../../../components/Button/TextButton";
+import {StyledTagText} from "../../../../components/Text/text";
 
+import {Link} from "react-router-dom";
 const ModuleItem = props => {
+  const status = props.status[0].toUpperCase() + props.status.slice(1);
+
   return (
     <StyledItem>
       <Name>
-        <Link to={`/module/${props.id}`}>{props.name}</Link>
+        <Link to={`/module/${props.id}/form?status=${props.status}`}>{props.name}</Link>
       </Name>
       <Date>{props.date}</Date>
       <Edit>
-        <Button to={`/module/edit/${props.id}`}>EDIT</Button>
+        <TextLink to={`/module/${props.id}/edit`}>EDIT</TextLink>
       </Edit>
-      <Submit>
-        {/* TODO: make this not a link? should just make a request */}
-        <Button to={`/module/submit/${props.id}`}>SUBMIT</Button>
-      </Submit>
+      <Status color={status.toLowerCase() === "publish" ? "blue" : "red"}>{status}</Status>
       <Remove>
-        <Button to={`/module/remove/${props.id}`}>REMOVE</Button>
+      <Button>REMOVE</Button>
       </Remove>
     </StyledItem>
   );

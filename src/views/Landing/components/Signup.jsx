@@ -60,7 +60,7 @@ function Signup(props) {
           required
         />{" "}
         <br />
-        <Button>SIGN UP</Button>
+        <Button type="submit">SIGN UP</Button>
         <Text>Already have an account?</Text>
         <Poplink to="/login">login here.</Poplink>
       </form>

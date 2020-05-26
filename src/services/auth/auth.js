@@ -6,6 +6,19 @@ import axios from "axios";
 var Auth = (function() {
   var loggedIn = false;
 
+  var requestConfig = function() { 
+    const TOKEN = getToken();
+
+    return { headers: {
+      "Content-Type": "application/json; charset=utf-8",
+      Authorization: "Bearer " + TOKEN }
+    }
+  }
+
+  var getToken = function() { 
+    return localStorage.getItem("TOKEN");
+  }
+
   // must be async
   var userLogin = function(token, username) {
     User.setName(username);
@@ -24,7 +37,7 @@ var Auth = (function() {
   // make async
   var verifyLogin = async function() {
     // check if JWT exists
-    const TOKEN = localStorage.getItem("TOKEN");
+    const TOKEN = getToken()
     if (TOKEN) {
       let status = false;
       // TODO: store JWT in cookie instead of local storage
@@ -36,11 +49,11 @@ var Auth = (function() {
           },
         })
         .then(res => {
+          console.log(res)
           let username = res.data.username;
           let user_id = res.data.user_id;
           let user_role = res.data.role_id;
           let email = res.data.email;
-          console.log(res.data);
           // user variables
           User.setName(username);
           User.setEmail(email);
@@ -60,6 +73,7 @@ var Auth = (function() {
   };
 
   return {
+    requestConfig: requestConfig,
     login: userLogin,
     logout: userLogout,
     verifyLogin: verifyLogin,

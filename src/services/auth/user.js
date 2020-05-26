@@ -12,8 +12,8 @@ var UserProfile = (function() {
     return name;
   };
 
-  var setName = function(nname) {
-    name = nname;
+  var setName = function(_name) {
+    name = _name;
     // Also set this in cookie/localStorage
   };
 
@@ -21,18 +21,17 @@ var UserProfile = (function() {
     return email;
   };
 
-  var setEmail = function(email) {
-    email = email;
+  var setEmail = function(_email) {
+    email = _email;
     // Also set this in cookie/localStorage
   };
 
   // TODO: manage roles in more secure way
-  var setRole = function(role) {
-    role = role;
+  var setRole = function(_role) {
+    role = _role;
   };
 
   var getRole = function() {
-    console.log(role);
     return role;
   };
 

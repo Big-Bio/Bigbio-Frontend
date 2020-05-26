@@ -1,9 +1,18 @@
 import React from "react";
-import {StyledTextButton} from "./style";
+import {StyledButtonText} from "./style";
+import {Link} from "react-router-dom";
 
 // use specific text style
-const Button = props => (
-  <StyledTextButton to={props.to}>{props.children}</StyledTextButton>
+export const Button =  props => (
+  <StyledButtonText onClick={props.onClick}>{props.children}</StyledButtonText>
 );
 
-export default Button;
+const TextLink = props => (
+  <Link to={props.to}><StyledButtonText>{props.children}</StyledButtonText></Link>
+);
+
+// export const TagLink = props => ( 
+//   <Link to={props.to}><StyledTagText>{props.chilren}</StyledTagText></Link>
+// );
+
+export default TextLink;

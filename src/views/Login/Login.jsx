@@ -71,7 +71,7 @@ const Login = props => {
             required
           />
           <br />
-          <Button>LOGIN</Button>
+          <Button type="submit">LOGIN</Button>
           <Text>Forgot username/password?</Text>
           <Poplink to="/">click here.</Poplink>
         </form>

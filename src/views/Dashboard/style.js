@@ -5,3 +5,8 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
 `;
+
+export const AdminContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+`;

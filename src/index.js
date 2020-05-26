@@ -9,6 +9,7 @@ import Nodes from "./views/Basics/Basics";
 import Resources from "./views/Resources/Resources";
 import Instructions from "./views/Instructions/Instructions";
 import Dashboard from "./views/Dashboard/Dashboard";
+import ContributorApp from "./views/ContributorApp/ContributorApp";
 import Registration from "./views/Registration/Registration";
 import Login from "./views/Login/Login";
 import Module from "./views/Module/Module";
@@ -28,9 +29,10 @@ ReactDOM.render(
       <Route path="/login" component={Login} />
       <Route exact path="/dash" component={Dashboard} />
       <Route path="/registration/:key" component={Registration} />
-      <Route path="/module/:id" component={Module} />
+      <Route path="/module" component={Module} />
       {/* testing routes */}
       <Route exact path="/home" component={Landing} />
+      <Route exact path="/contributor-app" component={ContributorApp} />
     </Switch>
   </BrowserRouter>,
   document.getElementById("root")
